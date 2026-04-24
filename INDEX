@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook 5 Passos — Gestão & Assinatura em Barbearias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #d4a574 0%, #8b6f47 100%);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro-box {
+            background: rgba(212, 165, 116, 0.1);
+            border-left: 4px solid #d4a574;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .intro-box p {
+            margin-bottom: 0.8rem;
+        }
+
+        .intro-box strong {
+            color: #d4a574;
+        }
+
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #d4a574;
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #b0b0b0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            position: relative;
+        }
+
+        .tab-button:hover {
+            color: #d4a574;
+        }
+
+        .tab-button.active {
+            color: #d4a574;
+            border-bottom-color: #d4a574;
+        }
+
+        .tab-button span {
+            display: block;
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 0.2rem;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            background: #1a1a2e;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #2d2d3d;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #d4a574;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #8b9dc3;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #d4a574;
+            border-bottom: 2px solid #d4a574;
+            padding-bottom: 0.5rem;
+        }
+
+        h3:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #e0e0e0;
+            font-size: 1rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: #e0e0e0;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: rgba(212, 165, 116, 0.08);
+            border-left: 4px solid #d4a574;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #d4a574;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #b0b0b0;
+            border-left: 4px solid #d4a574;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .column {
+            background: #242435;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border: 1px solid #2d2d3d;
+        }
+
+        .column h4 {
+            color: #d4a574;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .column ul {
+            margin-left: 1.5rem;
+        }
+
+        .column li {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .checklist {
+            background: #242435;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: #1a1a2e;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background: #252537;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 0.2rem;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            accent-color: #d4a574;
+        }
+
+        .checklist-item label {
+            flex: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + label {
+            color: #8b9dc3;
+            text-decoration: line-through;
+        }
+
+        .metric-box {
+            background: #242435;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 4px solid #d4a574;
+            margin: 1rem 0;
+        }
+
+        .metric-box .label {
+            color: #8b9dc3;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-box .value {
+            font-size: 1.3rem;
+            color: #d4a574;
+            font-weight: 700;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #8b9dc3;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            border-top: 1px solid #2d2d3d;
+        }
+
+        footer a {
+            color: #d4a574;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            .tab-button {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #d4a574;
+            color: #0f0f1e;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🪮 Playbook 5 Passos</h1>
+        <p>Gestão, Performance & Assinatura em Barbearias</p>
+    </header>
+
+    <div class="container">
+        <div class="intro-box">
+            <p><strong>Por que este playbook existe:</strong></p>
+            <p>A maioria das barbearias no Brasil é gerida por barbeiros excepcionais que ainda não se tornaram empreendedores completos. Este playbook reúne os 5 passos estratégicos aplicados em barbearias de alto desempenho para transformar gestão operacional em crescimento sustentável e modelos recorrentes de receita.</p>
+            <p><strong>O que você vai aprender:</strong> Diagnóstico estruturado → Mentalidade do dono → Números que importam → Fidelização de profissionais → Implementação do modelo de assinatura.</p>
+        </div>
+
+        <div class="tabs" id="tabsContainer">
+            <button class="tab-button active" data-tab="passo1">
+                <span class="step-number">1</span>Diagnóstico
+                <span>Entender o problema</span>
+            </button>
+            <button class="tab-button" data-tab="passo2">
+                <span class="step-number">2</span>Mentalidade
+                <span>Do barbeiro ao dono</span>
+            </button>
+            <button class="tab-button" data-tab="passo3">
+                <span class="step-number">3</span>Números
+                <span>KPIs que importam</span>
+            </button>
+            <button class="tab-button" data-tab="passo4">
+                <span class="step-number">4</span>Fidelização
+                <span>Reter profissionais</span>
+            </button>
+            <button class="tab-button" data-tab="passo5">
+                <span class="step-number">5</span>Assinatura
+                <span>Implementar modelo</span>
+            </button>
+        </div>
+
+        <!-- PASSO 1 -->
+        <div id="passo1" class="tab-content active">
+            <div class="content-section">
+                <h2>Passo 1: Diagnóstico Estruturado</h2>
+                <p class="subtitle">O primeiro passo é entender o seu problema específico — porque cada barbearia tem um problema diferente.</p>
+
+                <h3>O Sintoma vs. O Problema Raiz</h3>
+                <p>Você pode estar reclamando que "não ganha dinheiro", mas o problema real pode estar em:</p>
+                <ul>
+                    <li><strong>Perca de autoridade:</strong> Seus colaboradores não entendem sua visão porque você ainda está na cadeira cortando</li>
+                    <li><strong>Desorganização operacional:</strong> Você executa tudo, mas nada é escalável sem você</li>
+                    <li><strong>Falta de indicadores:</strong> Você não sabe quais números olhar para tomar decisão</li>
+                    <li><strong>Ausência de sistemas:</strong> Tudo depende da sua presença física</li>
+                    <li><strong>Modelo de receita frágil:</strong> Você vende por projeto, não por recorrência</li>
+                </ul>
+
+                <h3>Questionário de Diagnóstico</h3>
+                <p>Responda com honestidade:</p>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="diag1">
+                        <label for="diag1">Você ainda passa mais de 4 horas por dia na cadeira cortando?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="diag2">
+                        <label for="diag2">Seus colaboradores sabem qual é a visão estratégica da barbearia?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="diag3">
+                        <label for="diag3">Você olha para um painel de relatórios toda semana?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="diag4">
+                        <label for="diag4">Seus profissionais têm um plano de crescimento claro?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="diag5">
+                        <label for="diag5">Você já experimentou oferecer assinatura ou planos recorrentes?</label>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>⚠️ Se respondeu "não" para 3+ perguntas:</strong><br>
+                    Você está operando como comerciante, não como empresário. Este playbook foi feito para você.
+                </div>
+
+                <h3>Os Três Bloqueios Mais Comuns</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <h4>1. Bloqueio Mental</h4>
+                        <p>Você acredita que "só você sabe fazer direito". Seu ego está preso à execução.</p>
+                        <p><strong>Verdade:</strong> Quando você sai da cadeira, você ganha o poder de amplificar resultado através de outras pessoas.</p>
+                    </div>
+                    <div class="column">
+                        <h4>2. Bloqueio Estrutural</h4>
+                        <p>Você não tem processos documentados. Tudo é "do jeito que sempre fez".</p>
+                        <p><strong>Verdade:</strong> Sistemas criam consistência. Inconsistência mata crescimento.</p>
+                    </div>
+                </div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>3. Bloqueio de Indicadores</h4>
+                        <p>Você não sabe quais números olhar. Tudo fica "isso tá certo" ou "tá ruim".</p>
+                        <p><strong>Verdade:</strong> Você só gerencia o que você mede. Sem dados, você gerencia por intuição.</p>
+                    </div>
+                    <div class="column">
+                        <h4>Resultado</h4>
+                        <p>Quando os três bloqueios existem, você tem uma barbearia que para de crescer quando você deveria ter mais liberdade.</p>
+                    </div>
+                </div>
+
+                <h3>Próximo Passo</h3>
+                <p>Agora que você identificou o problema, você precisa adotar uma <strong>mentalidade de dono</strong>. Continue para o Passo 2.</p>
+            </div>
+        </div>
+
+        <!-- PASSO 2 -->
+        <div id="passo2" class="tab-content">
+            <div class="content-section">
+                <h2>Passo 2: Mentalidade do Dono</h2>
+                <p class="subtitle">Sair da cadeira é um ato de coragem. É aqui que a transformação começa.</p>
+
+                <h3>O Paradoxo da Cadeira</h3>
+                <p>A cadeira representa a maior armadilha do barbeiro-empreendedor.</p>
+
+                <div class="highlight-box">
+                    <strong>Enquanto suas mãos estiverem ocupadas com a tesoura, sua mente estará bloqueada para a gestão.</strong>
+                </div>
+
+                <p>Ficar preso ao trabalho operacional impede a visão estratégica. Sair da cadeira pode gerar uma queda inicial no faturamento pessoal, mas abre espaço para o crescimento exponencial do negócio.</p>
+
+                <p class="quote">"Sair da cadeira não é abandonar o que você sabe fazer. É criar espaço para fazer o que ninguém mais pode fazer no seu lugar."</p>
+
+                <h3>Os 4 Estágios de Evolução do Dono</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Estágio 1: Cliente</h4>
+                        <p>Você tem a perspectiva de quem consome. Entende expectativas e garante resultado.</p>
+                        <p><strong>Resultado:</strong> Qualidade técnica consistente.</p>
+                    </div>
+                    <div class="column">
+                        <h4>Estágio 2: Barbeiro Profissional</h4>
+                        <p>Foco em excelência técnica. Você é muito bom no que faz.</p>
+                        <p><strong>Limite:</strong> Você só pode crescer quanto suas horas permitem.</p>
+                    </div>
+                </div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Estágio 3: Despertar do Dono</h4>
+                        <p>Você gerencia equipe, clientes, finanças, marketing e operações.</p>
+                        <p><strong>Resultado:</strong> Crescimento começa a acontecer além de você.</p>
+                    </div>
+                    <div class="column">
+                        <h4>Estágio 4: Dono Autônomo</h4>
+                        <p>A barbearia funciona de forma lucrativa e eficiente sem sua presença constante.</p>
+                        <p><strong>Resultado:</strong> Você ganhou liberdade.</p>
+                    </div>
+                </div>
+
+                <h3>Comerciante vs. Empresário</h3>
+                <p>Essa distinção é o ponto de virada. Não é sobre tamanho do negócio — é sobre mentalidade.</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>🚗 Comerciante</h4>
+                        <ul>
+                            <li>Depende da presença diária</li>
+                            <li>Visão de curto prazo</li>
+                            <li>Resolve problemas quando aparecem</li>
+                            <li>O negócio para quando ele para</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>🏢 Empresário</h4>
+                        <ul>
+                            <li>Constrói sistemas independentes</li>
+                            <li>Foco no futuro e na expansão</li>
+                            <li>Antecipa e previne problemas</li>
+                            <li>Desenvolve equipe continuamente</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Os 5 Passos para Sair da Cadeira</h3>
+                <ol>
+                    <li><strong>Comece com 1-2 horas livres por semana.</strong> Teste se a barbearia funciona sem você por um tempo curto.</li>
+                    <li><strong>Documente seus processos.</strong> Tudo o que você faz tem que estar escrito pra alguém poder copiar.</li>
+                    <li><strong>Desenvolva um barbeiro de confiança.</strong> Ele vai ser seu "segundo cérebro" na operação.</li>
+                    <li><strong>Crie rituais de gestão.</strong> Segunda pela manhã você olha números. Terça você tira dúvida da equipe. Assim por diante.</li>
+                    <li><strong>Celebre pequenas vitórias.</strong> Quando algo funciona sem você, comemore. Isso reforça que o sistema está pronto.</li>
+                </ol>
+
+                <div class="highlight-box">
+                    <strong>Lembre-se:</strong> Você não abandona o que você sabe fazer. Você multiplica.
+                </div>
+
+                <h3>Próximo Passo</h3>
+                <p>Agora que você tem mentalidade de dono, você precisa saber <strong>quais números olhar</strong>. Continue para o Passo 3.</p>
+            </div>
+        </div>
+
+        <!-- PASSO 3 -->
+        <div id="passo3" class="tab-content">
+            <div class="content-section">
+                <h2>Passo 3: Números que Importam</h2>
+                <p class="subtitle">Você só gerencia o que você mede. Sem dados, você gerencia por intuição.</p>
+
+                <h3>O Ciclo de Decisão Baseada em Dados</h3>
+                <p>Decisões baseadas em intuição funcionam enquanto seu negócio é pequeno. Quando você cresce, intuição mata crescimento.</p>
+
+                <p class="quote">"Se você não está olhando pra números toda semana, você não está gerenciando — está rezando."</p>
+
+                <h3>Os 7 Indicadores Críticos</h3>
+
+                <div class="metric-box">
+                    <div class="label">1. Ticket Médio</div>
+                    <div class="value">R$ 45-90</div>
+                    <p style="margin-top: 0.8rem;">Quanto o cliente gasta em média por visita. Inclua produtos, serviços adicionais, tudo.</p>
+                    <p><strong>Meta:</strong> Aumentar 15% ao mês através de venda consultiva.</p>
+                </div>
+
+                <div class="metric-box">
+                    <div class="label">2. Taxa de Recorrência</div>
+                    <div class="value">40-60%</div>
+                    <p style="margin-top: 0.8rem;">Quantos clientes voltam em até 30 dias após o atendimento?</p>
+                    <p><strong>Meta:</strong> Clientes de assinatura devem ter 100% de recorrência.</p>
+                </div>
+
+                <div class="metric-box">
+                    <div class="label">3. Faturamento Mensal Recorrente (MRR)</div>
+                    <div class="value">Variável</div>
+                    <p style="margin-top: 0.8rem;">Quanto você ganha de assinatura fixa todo mês?</p>
+                    <p><strong>Meta:</strong> 30-50% da receita total deve vir de modelo recorrente.</p>
+                </div>
+
+                <div class="metric-box">
+                    <div class="label">4. Custo de Folha de Pagamento</div>
+                    <div class="value">35-45% do faturamento</div>
+                    <p style="margin-top: 0.8rem;">Quanto você gasta com salários e comissão em relação à receita?</p>
+                    <p><strong>Meta:</strong> Manter entre 35-45%. Acima disso, o negócio não é viável.</p>
+                </div>
+
+                <div class="metric-box">
+                    <div class="label">5. Taxa de Checkout / Não Show</div>
+                    <div class="value">Alvo: &lt;5%</div>
+                    <p style="margin-top: 0.8rem;">Quantos clientes agendados não comparecem?</p>
+                    <p><strong>Meta:</strong> Implementar confirmação via WhatsApp 24h antes.</p>
+                </div>
+
+                <div class="metric-box">
+                    <div class="label">6. Lifetime Value (LTV)</div>
+                    <div class="value">R$ 900-2000</div>
+                    <p style="margin-top: 0.8rem;">Quanto um cliente gasta do início ao fim do relacionamento?</p>
+                    <p><strong>Meta:</strong> LTV de clientes de assinatura deve ser 3x maior que clientes ocasionais.</p>
+                </div>
+
+                <div class="metric-box">
+                    <div class="label">7. Produtividade por Profissional</div>
+                    <div class="value">Clientes/dia</div>
+                    <p style="margin-top: 0.8rem;">Quantos clientes cada barbeiro atende por dia em média?</p>
+                    <p><strong>Meta:</strong> Manter consistente. Queda = falta de motivação ou sistema quebrado.</p>
+                </div>
+
+                <h3>Como Criar um Painel de Gestão</h3>
+                <p>Você não precisa de sistema caro. Uma planilha simples funciona:</p>
+                <ul>
+                    <li><strong>Coluna A:</strong> Data</li>
+                    <li><strong>Coluna B:</strong> Clientes atendidos</li>
+                    <li><strong>Coluna C:</strong> Faturamento bruto</li>
+                    <li><strong>Coluna D:</strong> Assinantes ativos</li>
+                    <li><strong>Coluna E:</strong> No-show rate</li>
+                    <li><strong>Coluna F:</strong> Observação (qualquer coisa relevante)</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>Ritual de Gestão:</strong> Toda segunda-feira de manhã, você dedica 30 minutos a olhar para esta planilha. Se algo caiu, você investiga por que. Se algo subiu, você replica.
+                </div>
+
+                <h3>O Relatório Semanal (15 minutos de análise)</h3>
+                <p>Faça essas 4 perguntas:</p>
+                <ol>
+                    <li>O ticket médio subiu ou caiu? Por quê?</li>
+                    <li>Clientes de assinatura cresceram? Qual é a meta pra próxima semana?</li>
+                    <li>Teve no-show? Quando foi? Que padrão é esse?</li>
+                    <li>Que profissional teve maior produtividade? Ele fez algo diferente?</li>
+                </ol>
+
+                <h3>Próximo Passo</h3>
+                <p>Agora que você sabe quais números olhar, você precisa <strong>manter seus profissionais motivados e crescendo</strong>. Continue para o Passo 4.</p>
+            </div>
+        </div>
+
+        <!-- PASSO 4 -->
+        <div id="passo4" class="tab-content">
+            <div class="content-section">
+                <h2>Passo 4: Fidelização de Profissionais</h2>
+                <p class="subtitle">Sem profissionais engajados, nenhum sistema funciona. Fidelização é o segundo pilar da gestão.</p>
+
+                <h3>Por que Seus Melhores Barbeiros Saem</h3>
+                <p>A razão nunca é só o dinheiro. É uma combinação de:</p>
+                <ul>
+                    <li><strong>Falta de clareza:</strong> Ele não sabe qual é o plano dele na barbearia</li>
+                    <li><strong>Ausência de desenvolvimento:</strong> Ele não está aprendendo coisa nova</li>
+                    <li><strong>Clima ruim:</strong> Ele sente que o dono está perdido e isso gera ansiedade</li>
+                    <li><strong>Oportunidade melhor:</strong> Ele viu alguém oferecendo mais liberdade ou flexibilidade</li>
+                </ul>
+
+                <p class="quote">"Pessoas cuidarão da sua empresa quando você cuidar das pessoas."</p>
+
+                <h3>Os 5 Pilares de Fidelização</h3>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>1. Clareza de Propósito</h4>
+                        <p>Cada profissional precisa saber:</p>
+                        <ul style="margin-left: 1rem;">
+                            <li>Por que a barbearia existe</li>
+                            <li>Qual é o papel dele nisso</li>
+                            <li>Como ele cresce aqui</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>2. Desenvolvimento Contínuo</h4>
+                        <p>Ofereça:</p>
+                        <ul style="margin-left: 1rem;">
+                            <li>Treinamentos mensais</li>
+                            <li>Mentoria de você ou de outro barbeiro sênior</li>
+                            <li>Certificações e cursos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>3. Remuneração Justa</h4>
+                        <p>Estruture assim:</p>
+                        <ul style="margin-left: 1rem;">
+                            <li>Salário-base + comissão</li>
+                            <li>Bônus quando a barbearia cresce</li>
+                            <li>Transparência total sobre números</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>4. Autonomia Progressiva</h4>
+                        <p>Deixe ele:</p>
+                        <ul style="margin-left: 1rem;">
+                            <li>Treinar novos barbeiros</li>
+                            <li>Sugerir processos</li>
+                            <li>Ter "cliente dele" se quiser</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column" style="grid-column: 1;">
+                    <h4>5. Reconhecimento Visível</h4>
+                    <p>Celebre em público:</p>
+                    <ul style="margin-left: 1rem;">
+                        <li>Melhor barbeiro do mês</li>
+                        <li>Maior crescimento em ticket</li>
+                        <li>Melhor feedback de cliente</li>
+                    </ul>
+                </div>
+
+                <h3>O Modelo de Conversa 1:1</h3>
+                <p>Todo mês, você conversa com cada profissional por 30 minutos. Aqui está o script:</p>
+
+                <div class="highlight-box">
+                    <p><strong>Abertura:</strong> "Tô querendo entender como você tá se sentindo na barbearia."</p>
+                    <p><strong>Escuta:</strong> Deixe ele falar. Ouça sem interromper.</p>
+                    <p><strong>Validação:</strong> "Entendi. Isso faz sentido porque..."</p>
+                    <p><strong>Ação:</strong> "Aqui tá o que eu posso fazer pra melhorar." (sempre ofereça algo concreto)</p>
+                    <p><strong>Fechamento:</strong> "Próximo mês a gente se fala de novo e vê como ficou. Tá bom?"</p>
+                </div>
+
+                <h3>Checklist de Fidelização — Faça Isso Este Mês</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="fid1">
+                        <label for="fid1">Sentei com cada profissional e perguntei como ele está se sentindo</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="fid2">
+                        <label for="fid2">Deixei claro qual é a visão da barbearia para os próximos 12 meses</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="fid3">
+                        <label for="fid3">Defini um plano de crescimento para cada um (o que ele quer aprender)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="fid4">
+                        <label for="fid4">Implementei um sistema de bônus ou reconhecimento mensal</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="fid5">
+                        <label for="fid5">Agendei treinamento ou curso para alguém</label>
+                    </div>
+                </div>
+
+                <h3>Próximo Passo</h3>
+                <p>Agora que sua equipe está engajada, você está pronto para <strong>implementar o modelo de assinatura</strong>. Continue para o Passo 5 — o passo final.</p>
+            </div>
+        </div>
+
+        <!-- PASSO 5 -->
+        <div id="passo5" class="tab-content">
+            <div class="content-section">
+                <h2>Passo 5: Modelo de Assinatura</h2>
+                <p class="subtitle">O modelo que transforma faturamento esporádico em receita recorrente e previsível.</p>
+
+                <h3>Por que Assinatura Funciona em Barbearia</h3>
+                <ul>
+                    <li><strong>Previsibilidade:</strong> Você sabe quanto vai ganhar no mês que vem</li>
+                    <li><strong>Lealdade:</strong> Cliente de assinatura é 5x mais leal que cliente ocasional</li>
+                    <li><strong>Poder de barganha:</strong> Com MRR (Monthly Recurring Revenue), você consegue crédito de fornecedor</li>
+                    <li><strong>Operação mais limpa:</strong> Você não fica esperando cliente agendar. Ele já sabe que vem</li>
+                </ul>
+
+                <p class="quote">"Assinatura não é desconto. É acesso garantido a um padrão de serviço."</p>
+
+                <h3>Os 3 Modelos de Assinatura Mais Comuns</h3>
+
+                <div class="column">
+                    <h4>Modelo 1: Corte Ilimitado</h4>
+                    <p><strong>Preço:</strong> R$ 99-199 por mês</p>
+                    <p><strong>O que inclui:</strong> Cortes ilimitados, sempre com o mesmo barbeiro</p>
+                    <p><strong>Bom para:</strong> Profissionais que querem cliente 100% fidelizado</p>
+                    <p><strong>Cálculo:</strong> Se você cobra R$ 50 por corte e faz 2 cortes por semana, assinatura sai por R$ 130/mês (você ganha mais, cliente economiza)</p>
+                </div>
+
+                <div class="column">
+                    <h4>Modelo 2: Plano de Visitas</h4>
+                    <p><strong>Preço:</strong> R$ 149-349 por mês</p>
+                    <p><strong>O que inclui:</strong> 4 visitas/mês (1 por semana) + produtos exclusivos</p>
+                    <p><strong>Bom para:</strong> Barbearias que querem garantir ocupação semanal</p>
+                    <p><strong>Benefício:</strong> Cliente compromete-se com frequência. Você consegue planejar melhor.</p>
+                </div>
+
+                <div class="column">
+                    <h4>Modelo 3: VIP Premium</h4>
+                    <p><strong>Preço:</strong> R$ 399-599 por mês</p>
+                    <p><strong>O que inclui:</strong> Tudo acima + consultoria, produtos premium, agendamento prioritário, ambiente privativo</p>
+                    <p><strong>Bom para:</strong> Barbearias em posicionamento premium</p>
+                    <p><strong>Limite:</strong> 10-15 clientes VIP máximo (senão o serviço desvaloriza)</p>
+                </div>
+
+                <h3>O Passo a Passo de Implementação</h3>
+
+                <h4>Semana 1: Preparação Mental e Operacional</h4>
+                <ul>
+                    <li>Escolha qual modelo você vai oferecer (comece com 1 apenas)</li>
+                    <li>Calcule a preço com base no seu custo operacional (veja a fórmula abaixo)</li>
+                    <li>Comunique internamente com a equipe — eles vão ser seus vendedores</li>
+                    <li>Crie material visual simples (pode ser só no WhatsApp mesmo)</li>
+                </ul>
+
+                <h4>Semana 2-3: Oferta Inicial</h4>
+                <ul>
+                    <li>Comece oferecendo apenas para clientes regulares (que vêm 2x+ por mês)</li>
+                    <li>A conversa é simples: "Cara, você vem aqui toda semana. Que tal a gente fazer um plano que sai mais barato pra você e garante seu horário?"</li>
+                    <li>Não venda para todo mundo — qualidade > quantidade</li>
+                </ul>
+
+                <h4>Semana 4: Otimização</h4>
+                <ul>
+                    <li>Veja quantos assinantes você conseguiu (meta inicial: 5-10)</li>
+                    <li>Se ninguém assinou, o problema é preço ou comunicação — teste ambos</li>
+                    <li>Se muita gente assinou, você pode aumentar preço mês que vem</li>
+                </ul>
+
+                <h3>A Fórmula de Preço de Assinatura</h3>
+                <p>Não puxe preço do ar. Calcule assim:</p>
+
+                <div class="highlight-box">
+                    <p><strong>Preço de assinatura = (Ticket médio por visita) × (Frequência esperada por mês) × 1,1</strong></p>
+                    <p style="margin-top: 1rem;"><strong>Exemplo:</strong></p>
+                    <p>Se o cliente gasta R$ 50 em média por corte e você quer que ele venha 2x por mês:</p>
+                    <p>Assinatura = R$ 50 × 2 × 1,1 = <strong>R$ 110</strong></p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #b0b0b0;">O "× 1,1" é o lucro adicional. Você ganha um pouco mais porque ele está comprometido.</p>
+                </div>
+
+                <h3>Os Ganhos Reais da Assinatura</h3>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Para o Cliente</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li>Economiza 10-20% por mês</li>
+                            <li>Tem horário garantido</li>
+                            <li>Relação mais próxima com o barbeiro</li>
+                            <li>Status (cliente VIP)</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Para Você</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li>Receita garantida todo mês</li>
+                            <li>Cliente 5x mais leal</li>
+                            <li>Agenda previsível</li>
+                            <li>Indicação automática (cliente vira propagandista)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Cenário Real — Antes vs. Depois</h3>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>❌ Antes (Modelo Ocasional)</h4>
+                        <p>30 clientes ocasionais</p>
+                        <p>Cada um vem 1x por mês</p>
+                        <p>Ticket: R$ 50</p>
+                        <p><strong>Faturamento: R$ 1.500/mês</strong></p>
+                        <p style="margin-top: 0.8rem; font-size: 0.9rem;">Variável. Mês que vem pode cair.</p>
+                    </div>
+                    <div class="column">
+                        <h4>✅ Depois (30% Assinatura)</h4>
+                        <p>20 clientes ocasionais</p>
+                        <p>10 clientes VIP (assinatura)</p>
+                        <p>Ocasional: R$ 50</p>
+                        <p>VIP: R$ 120/mês</p>
+                        <p><strong>Faturamento: R$ 2.200/mês</strong></p>
+                        <p style="margin-top: 0.8rem; font-size: 0.9rem;">R$ 1.200 é receita garantida.</p>
+                    </div>
+                </div>
+
+                <h3>Armadilhas Comuns — Evite Isso</h3>
+                <ul>
+                    <li><strong>❌ Preço muito baixo:</strong> "Vou fazer R$ 49/mês pra vender bastante" — você vai se arrepender</li>
+                    <li><strong>❌ Oferecer pra todo mundo:</strong> Assinatura precisa de comprometimento do cliente. Cliente ocasional não assin</li>
+                    <li><strong>❌ Não comunicar valor:</strong> "A gente tem assinatura" é diferente de "Com assinatura você economiza R$ 200/ano"</li>
+                    <li><strong>❌ Não acompanhar o assinante:</strong> Depois que assina, ele não pode virar invisível. Comunicação semanal é mínimo.</li>
+                </ul>
+
+                <h3>Checklist Final — Está Pronto?</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="assin1">
+                        <label for="assin1">Escolhi qual modelo de assinatura vou oferecer</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="assin2">
+                        <label for="assin2">Calculei o preço com base na minha fórmula</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="assin3">
+                        <label for="assin3">Comuniquei com a equipe — eles entenderam o modelo</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="assin4">
+                        <label for="assin4">Criei material de comunicação (mesmo que simples)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="assin5">
+                        <label for="assin5">Já identifiquei meus top 10 clientes regulares</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="assin6">
+                        <label for="assin6">Agendei conversas com eles pra oferecer assinatura</label>
+                    </div>
+                </div>
+
+                <h3>O Futuro Depois que Você Domina Isso Tudo</h3>
+                <p>Quando você tiver:</p>
+                <ul>
+                    <li>✅ Diagnóstico claro do seu problema</li>
+                    <li>✅ Mentalidade de dono (fora da cadeira)</li>
+                    <li>✅ Números que você olha toda semana</li>
+                    <li>✅ Profissionais engajados e desenvolvidos</li>
+                    <li>✅ Modelo de assinatura gerando MRR</li>
+                </ul>
+                <p>Você vai ter uma <strong>barbearia que funciona sem você</strong>. Faturando mais. Com equipe satisfeita. Com cliente leal.</p>
+
+                <div class="highlight-box">
+                    <p><strong>Isso não é fantasy.</strong></p>
+                    <p style="margin-top: 0.8rem;">Isso é o resultado natural da aplicação consistente desses 5 passos. O crescimento vem da consistência — não do talento isolado.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Playbook desenvolvido por <strong>Podium Educação</strong></p>
+        <p>Baseado em metodologia aplicada em barbearias de alto desempenho</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">© 2025. Material exclusivo para parceiros Podium.</p>
+    </footer>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Checklist functionality
+        const checklistItems = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+        checklistItems.forEach(item => {
+            item.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                if (this.checked) {
+                    label.style.textDecoration = 'line-through';
+                } else {
+                    label.style.textDecoration = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
